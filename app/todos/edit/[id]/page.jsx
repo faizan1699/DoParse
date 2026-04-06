@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '../../../../components/Navbar'
+import AuthGuard from '../../../../components/AuthGuard'
 import { todoStorage } from '../../../../utils/todoStorage'
 
 export default function EditTodoPage({ params }) {
@@ -12,20 +13,25 @@ export default function EditTodoPage({ params }) {
   })
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
   const [notFound, setNotFound] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const todo = todoStorage.getTodo(parseInt(params.id))
-    if (todo) {
-      setFormData({
-        title: todo.title,
-        description: todo.description || ''
-      })
-    } else {
-      setNotFound(true)
+    async function fetchTodo() {
+      setLoading(true)
+      const todo = await todoStorage.getTodo(parseInt(params.id))
+      if (todo) {
+        setFormData({
+          title: todo.title,
+          description: todo.description || ''
+        })
+      } else {
+        setNotFound(true)
+      }
+      setLoading(false)
     }
-    setLoading(false)
+    fetchTodo()
   }, [params.id])
 
   const validateForm = () => {
@@ -42,7 +48,7 @@ export default function EditTodoPage({ params }) {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const newErrors = validateForm()
     
@@ -51,12 +57,19 @@ export default function EditTodoPage({ params }) {
       return
     }
 
-    todoStorage.updateTodo(parseInt(params.id), {
-      title: formData.title.trim(),
-      description: formData.description.trim()
-    })
-    
-    router.push('/todos')
+    setIsSaving(true)
+    try {
+      await todoStorage.updateTodo(parseInt(params.id), {
+        title: formData.title.trim(),
+        description: formData.description.trim()
+      })
+      router.push('/todos')
+    } catch (error) {
+      console.error('Failed to update todo:', error)
+      alert('Failed to update todo. Please try again.')
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -77,20 +90,20 @@ export default function EditTodoPage({ params }) {
 
   if (loading) {
     return (
-      <>
+      <AuthGuard>
         <Navbar />
         <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-          <div className="text-gray-600">Loading...</div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
         </main>
-      </>
+      </AuthGuard>
     )
   }
 
   if (notFound) {
     return (
-      <>
+      <AuthGuard>
         <Navbar />
-        <main className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <main className="min-h-screen bg-gray-50 flex items-center justify-center border-black">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Todo Not Found</h2>
             <p className="text-gray-600 mb-6">The todo you're trying to edit doesn't exist.</p>
@@ -102,12 +115,12 @@ export default function EditTodoPage({ params }) {
             </button>
           </div>
         </main>
-      </>
+      </AuthGuard>
     )
   }
 
   return (
-    <>
+    <AuthGuard>
       <Navbar />
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -125,6 +138,7 @@ export default function EditTodoPage({ params }) {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
+                  disabled={isSaving}
                   className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-black ${
                     errors.title ? 'border-red-500' : 'border-gray-300'
                   }`}
@@ -145,6 +159,7 @@ export default function EditTodoPage({ params }) {
                   value={formData.description}
                   onChange={handleChange}
                   rows={4}
+                  disabled={isSaving}
                   className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-black ${
                     errors.description ? 'border-red-500' : 'border-gray-300'
                   }`}
@@ -158,9 +173,10 @@ export default function EditTodoPage({ params }) {
               <div className="flex space-x-4">
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  disabled={isSaving}
+                  className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
                 >
-                  Update Todo
+                  {isSaving ? 'Updating...' : 'Update Todo'}
                 </button>
                 <button
                   type="button"
@@ -174,6 +190,6 @@ export default function EditTodoPage({ params }) {
           </div>
         </div>
       </main>
-    </>
+    </AuthGuard>
   )
 }

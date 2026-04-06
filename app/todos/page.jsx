@@ -1,36 +1,45 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '../../components/Navbar'
+import AuthGuard from '../../components/AuthGuard'
 import { todoStorage } from '../../utils/todoStorage'
 
 export default function TodosPage() {
   const [todos, setTodos] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
 
-  useEffect(() => {
-    setTodos(todoStorage.getTodos())
+  const fetchTodos = useCallback(async () => {
+    setIsLoading(true)
+    const data = await todoStorage.getTodos()
+    setTodos(data)
+    setIsLoading(false)
   }, [])
 
-  const handleDelete = (id) => {
+  useEffect(() => {
+    fetchTodos()
+  }, [fetchTodos])
+
+  const handleDelete = async (id) => {
     if (confirm('Are you sure you want to delete this todo?')) {
-      todoStorage.deleteTodo(id)
-      setTodos(todoStorage.getTodos())
+      await todoStorage.deleteTodo(id)
+      await fetchTodos()
     }
   }
 
-  const handleToggleComplete = (id) => {
-    const todo = todoStorage.getTodo(id)
+  const handleToggleComplete = async (id) => {
+    const todo = await todoStorage.getTodo(id)
     if (todo) {
-      todoStorage.updateTodo(id, { completed: !todo.completed })
-      setTodos(todoStorage.getTodos())
+      await todoStorage.updateTodo(id, { completed: !todo.completed })
+      await fetchTodos()
     }
   }
 
   return (
-    <>
+    <AuthGuard>
       <Navbar />
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 overflow-x-auto">
@@ -44,7 +53,11 @@ export default function TodosPage() {
             </Link>
           </div>
 
-          {todos.length === 0 ? (
+          {isLoading ? (
+            <div className="flex justify-center py-12">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+            </div>
+          ) : todos.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 text-6xl mb-4">📝</div>
               <h3 className="text-xl font-medium text-gray-600 mb-2">
@@ -103,11 +116,10 @@ export default function TodosPage() {
                           </div>
                         </td>
                         <td className="px-4 py-3 whitespace-nowrap">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            todo.completed
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${todo.completed
                               ? 'bg-green-100 text-green-800'
                               : 'bg-yellow-100 text-yellow-800'
-                          }`}>
+                            }`}>
                             {todo.completed ? 'Complete' : 'Incomplete'}
                           </span>
                         </td>
@@ -124,11 +136,10 @@ export default function TodosPage() {
                             </Link>
                             <button
                               onClick={() => handleToggleComplete(todo.id)}
-                              className={`${
-                                todo.completed
+                              className={`${todo.completed
                                   ? 'text-yellow-600 hover:text-yellow-900'
                                   : 'text-green-600 hover:text-green-900'
-                              } transition-colors inline-flex items-center gap-1 text-xs`}
+                                } transition-colors inline-flex items-center gap-1 text-xs`}
                             >
                               {todo.completed ? (
                                 <>
@@ -166,6 +177,6 @@ export default function TodosPage() {
           )}
         </div>
       </main>
-    </>
+    </AuthGuard>
   )
 }

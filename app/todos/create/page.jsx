@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '../../../components/Navbar'
+import AuthGuard from '../../../components/AuthGuard'
 import { todoStorage } from '../../../utils/todoStorage'
 
 export default function CreateTodoPage() {
@@ -11,6 +12,7 @@ export default function CreateTodoPage() {
     description: ''
   })
   const [errors, setErrors] = useState({})
+  const [isSaving, setIsSaving] = useState(false)
   const router = useRouter()
 
   const validateForm = () => {
@@ -27,7 +29,7 @@ export default function CreateTodoPage() {
     return newErrors
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const newErrors = validateForm()
     
@@ -36,12 +38,19 @@ export default function CreateTodoPage() {
       return
     }
 
-    todoStorage.addTodo({
-      title: formData.title.trim(),
-      description: formData.description.trim()
-    })
-    
-    router.push('/todos')
+    setIsSaving(true)
+    try {
+      await todoStorage.addTodo({
+        title: formData.title.trim(),
+        description: formData.description.trim()
+      })
+      router.push('/todos')
+    } catch (error) {
+      console.error('Failed to add todo:', error)
+      alert('Failed to save todo. Please try again.')
+    } finally {
+      setIsSaving(false)
+    }
   }
 
   const handleChange = (e) => {
@@ -61,7 +70,7 @@ export default function CreateTodoPage() {
   }
 
   return (
-    <>
+    <AuthGuard>
       <Navbar />
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -83,6 +92,7 @@ export default function CreateTodoPage() {
                     errors.title ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter todo title"
+                  disabled={isSaving}
                 />
                 {errors.title && (
                   <p className="mt-1 text-sm text-red-600">{errors.title}</p>
@@ -103,6 +113,7 @@ export default function CreateTodoPage() {
                     errors.description ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="Enter todo description (optional)"
+                  disabled={isSaving}
                 />
                 {errors.description && (
                   <p className="mt-1 text-sm text-red-600">{errors.description}</p>
@@ -112,9 +123,10 @@ export default function CreateTodoPage() {
               <div className="flex space-x-4">
                 <button
                   type="submit"
-                  className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                  disabled={isSaving}
+                  className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
                 >
-                  Save Todo
+                  {isSaving ? 'Saving...' : 'Save Todo'}
                 </button>
                 <button
                   type="button"
@@ -128,6 +140,6 @@ export default function CreateTodoPage() {
           </div>
         </div>
       </main>
-    </>
+    </AuthGuard>
   )
 }

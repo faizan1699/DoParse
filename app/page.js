@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <Navbar />
       <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 overflow-x-auto">
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">

@@ -149,33 +149,40 @@ export default function ThreeBackground() {
 
     // Create floating cubes with trails
     for (let i = 0; i < 8; i++) {
-      const cubeGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
+      const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
       const cubeMaterial = new THREE.MeshBasicMaterial({
         color: new THREE.Color().setHSL(0.3, 0.9, 0.7),
         transparent: true,
-        opacity: 0.8
+        opacity: 0.8,
+        wireframe: Math.random() > 0.5
       })
       
       const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
       cube.position.set(
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 8
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 12
       )
+      
+      // Add random rotation for initial variety
+      cube.rotation.x = Math.random() * Math.PI
+      cube.rotation.y = Math.random() * Math.PI
+      cube.rotation.z = Math.random() * Math.PI
       
       cube.userData = {
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.03,
-          (Math.random() - 0.5) * 0.03,
-          (Math.random() - 0.5) * 0.03
+          (Math.random() - 0.5) * 0.04,
+          (Math.random() - 0.5) * 0.04,
+          (Math.random() - 0.5) * 0.04
         ),
         rotationSpeed: new THREE.Vector3(
-          Math.random() * 0.08,
-          Math.random() * 0.08,
-          Math.random() * 0.08
+          Math.random() * 0.1,
+          Math.random() * 0.1,
+          Math.random() * 0.1
         ),
-        originalScale: Math.random() * 0.5 + 0.5,
-        pulsePhase: Math.random() * Math.PI * 2
+        originalScale: Math.random() * 0.8 + 0.6,
+        pulsePhase: Math.random() * Math.PI * 2,
+        height: Math.random() * 2 + 1
       }
       
       specialObjects.push(cube)
@@ -183,32 +190,38 @@ export default function ThreeBackground() {
     }
 
     // Create floating spheres
-    for (let i = 0; i < 6; i++) {
-      const sphereGeometry = new THREE.SphereGeometry(0.15, 24, 16)
+    for (let i = 0; i < 10; i++) {
+      const sphereGeometry = new THREE.SphereGeometry(0.25, 32, 24)
       const sphereMaterial = new THREE.MeshPhongMaterial({
         color: new THREE.Color().setHSL(0.8, 0.8, 0.6),
         transparent: true,
         opacity: 0.7,
         emissive: new THREE.Color().setHSL(0.8, 0.8, 0.4),
-        emissiveIntensity: 0.3
+        emissiveIntensity: 0.3,
+        wireframe: Math.random() > 0.7
       })
       
       const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
       sphere.position.set(
-        (Math.random() - 0.5) * 12,
-        (Math.random() - 0.5) * 12,
-        (Math.random() - 0.5) * 6
+        (Math.random() - 0.5) * 18,
+        (Math.random() - 0.5) * 18,
+        (Math.random() - 0.5) * 10
       )
+      
+      // Add random rotation for initial variety
+      sphere.rotation.x = Math.random() * Math.PI * 2
+      sphere.rotation.y = Math.random() * Math.PI * 2
       
       sphere.userData = {
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.025,
-          (Math.random() - 0.5) * 0.025,
-          (Math.random() - 0.5) * 0.025
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03
         ),
-        rotationSpeed: Math.random() * 0.06,
+        rotationSpeed: Math.random() * 0.08,
         floatPhase: Math.random() * Math.PI * 2,
-        glowIntensity: Math.random() * 0.5 + 0.5
+        glowIntensity: Math.random() * 0.5 + 0.5,
+        height: Math.random() * 3 + 1
       }
       
       specialObjects.push(sphere)
@@ -216,8 +229,8 @@ export default function ThreeBackground() {
     }
 
     // Create moving tetrahedrons
-    for (let i = 0; i < 4; i++) {
-      const tetraGeometry = new THREE.TetrahedronGeometry(0.25, 0)
+    for (let i = 0; i < 6; i++) {
+      const tetraGeometry = new THREE.TetrahedronGeometry(0.4, 0)
       const tetraMaterial = new THREE.MeshBasicMaterial({
         color: new THREE.Color().setHSL(0.15, 1.0, 0.5),
         transparent: true,
@@ -227,19 +240,25 @@ export default function ThreeBackground() {
       
       const tetra = new THREE.Mesh(tetraGeometry, tetraMaterial)
       tetra.position.set(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 8
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 12
       )
+      
+      // Add random rotation for initial variety
+      tetra.rotation.x = Math.random() * Math.PI
+      tetra.rotation.y = Math.random() * Math.PI
+      tetra.rotation.z = Math.random() * Math.PI
       
       tetra.userData = {
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.04,
-          (Math.random() - 0.5) * 0.04,
-          (Math.random() - 0.5) * 0.04
+          (Math.random() - 0.5) * 0.05,
+          (Math.random() - 0.5) * 0.05,
+          (Math.random() - 0.5) * 0.05
         ),
-        rotationSpeed: Math.random() * 0.1,
-        wobblePhase: Math.random() * Math.PI * 2
+        rotationSpeed: Math.random() * 0.12,
+        wobblePhase: Math.random() * Math.PI * 2,
+        height: Math.random() * 2.5 + 1
       }
       
       specialObjects.push(tetra)
@@ -247,8 +266,8 @@ export default function ThreeBackground() {
     }
 
     // Create moving cylinders
-    for (let i = 0; i < 5; i++) {
-      const cylinderGeometry = new THREE.CylinderGeometry(0.1, 0.4, 16)
+    for (let i = 0; i < 8; i++) {
+      const cylinderGeometry = new THREE.CylinderGeometry(0.2, 0.6, 24)
       const cylinderMaterial = new THREE.MeshPhongMaterial({
         color: new THREE.Color().setHSL(0.55, 0.7, 0.6),
         transparent: true,
@@ -259,20 +278,25 @@ export default function ThreeBackground() {
       
       const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
       cylinder.position.set(
-        (Math.random() - 0.5) * 14,
-        (Math.random() - 0.5) * 14,
-        (Math.random() - 0.5) * 8
+        (Math.random() - 0.5) * 18,
+        (Math.random() - 0.5) * 18,
+        (Math.random() - 0.5) * 12
       )
       cylinder.rotation.z = Math.PI / 2
       
+      // Add random rotation for initial variety
+      cylinder.rotation.x = Math.random() * Math.PI * 2
+      cylinder.rotation.y = Math.random() * Math.PI * 2
+      
       cylinder.userData = {
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.02
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03
         ),
-        rotationSpeed: Math.random() * 0.03,
-        bouncePhase: Math.random() * Math.PI * 2
+        rotationSpeed: Math.random() * 0.05,
+        bouncePhase: Math.random() * Math.PI * 2,
+        height: Math.random() * 4 + 1
       }
       
       specialObjects.push(cylinder)

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '../../../../components/Navbar'
 import AuthGuard from '../../../../components/AuthGuard'
+import TextEditor from '../../../../components/TextEditor'
 import { todoStorage } from '../../../../utils/todoStorage'
 
 export default function EditTodoPage({ params }) {
@@ -153,17 +154,11 @@ export default function EditTodoPage({ params }) {
                 <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                   Description
                 </label>
-                <textarea
-                  id="description"
-                  name="description"
+                <TextEditor
                   value={formData.description}
-                  onChange={handleChange}
-                  rows={4}
-                  disabled={isSaving}
-                  className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 text-black ${
-                    errors.description ? 'border-red-500' : 'border-gray-300'
-                  }`}
-                  placeholder="Enter todo description (optional)"
+                  onChange={(content) => handleChange({ target: { name: 'description', value: content } })}
+                  placeholder="Add a detailed description..."
+                  className="min-h-[120px]"
                 />
                 {errors.description && (
                   <p className="mt-1 text-sm text-red-600">{errors.description}</p>

@@ -24,17 +24,31 @@
     "/todos/create/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/todos/create/page.css",
       "static/chunks/app/todos/create/page.js"
     ],
     "/todos/edit/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/todos/edit/[id]/page.css",
       "static/chunks/app/todos/edit/[id]/page.js"
     ],
-    "/not-found": [
+    "/about/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/about/page.js"
+    ],
+    "/contact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/contact/page.css",
+      "static/chunks/app/contact/page.js"
+    ],
+    "/text-editor/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/text-editor/page.css",
+      "static/chunks/app/text-editor/page.js"
     ]
   }
 }

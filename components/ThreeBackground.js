@@ -10,7 +10,7 @@ export default function ThreeBackground() {
   const frameRef = useRef(null)
 
   useEffect(() => {
-    if (!mountRef.current) return
+    if (!mountRef.current || typeof window === 'undefined') return
 
     // Scene setup
     const scene = new THREE.Scene()
@@ -32,7 +32,9 @@ export default function ThreeBackground() {
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setClearColor(0x000000, 0)
-    mountRef.current.appendChild(renderer.domElement)
+    if (mountRef.current) {
+      mountRef.current.appendChild(renderer.domElement)
+    }
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry()
@@ -44,90 +46,27 @@ export default function ThreeBackground() {
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
-
-    // Particle material
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.005,
-      color: 0x4ade80,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending
+      color: 0x4ade80
     })
 
-    // Create particle system
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial)
     scene.add(particlesMesh)
 
-    // Create floating geometric shapes
+    // Create geometric shapes
     const geometries = []
     const materials = []
     const meshes = []
 
-    // Add multiple geometric shapes
-    const shapeTypes = [
-      new THREE.BoxGeometry(0.5, 0.5, 0.5),
-      new THREE.SphereGeometry(0.3, 32, 32),
-      new THREE.ConeGeometry(0.3, 0.6, 32),
-      new THREE.TorusGeometry(0.3, 0.1, 16, 100),
-      new THREE.OctahedronGeometry(0.4, 0),
-      new THREE.TetrahedronGeometry(0.4, 0),
-      new THREE.IcosahedronGeometry(0.3, 0)
-    ]
-
-    for (let i = 0; i < 25; i++) {
-      const geometry = shapeTypes[Math.floor(Math.random() * shapeTypes.length)]
-      const material = new THREE.MeshPhongMaterial({
-        color: new THREE.Color().setHSL(Math.random(), 0.7, 0.5),
-        transparent: true,
-        opacity: 0.7,
-        wireframe: Math.random() > 0.5,
-        emissive: new THREE.Color().setHSL(Math.random(), 0.7, 0.2),
-        emissiveIntensity: 0.5
-      })
-
-      const mesh = new THREE.Mesh(geometry, material)
-      mesh.position.set(
-        (Math.random() - 0.5) * 12,
-        (Math.random() - 0.5) * 12,
-        (Math.random() - 0.5) * 8
-      )
-      mesh.rotation.set(
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-        Math.random() * Math.PI
-      )
-      mesh.scale.setScalar(Math.random() * 0.8 + 0.2)
-
-      // Add custom animation properties
-      mesh.userData = {
-        rotationSpeed: {
-          x: (Math.random() - 0.5) * 0.02,
-          y: (Math.random() - 0.5) * 0.02,
-          z: (Math.random() - 0.5) * 0.02
-        },
-        floatSpeed: Math.random() * 0.003 + 0.001,
-        floatOffset: Math.random() * Math.PI * 2,
-        orbitRadius: Math.random() * 0.5 + 0.1,
-        orbitSpeed: Math.random() * 0.001 + 0.0005
-      }
-
-      geometries.push(geometry)
-      materials.push(material)
-      meshes.push(mesh)
-      scene.add(mesh)
-    }
-
-    // Add special animated objects
-    const specialObjects = []
-    
-    // Create rotating rings
-    for (let i = 0; i < 3; i++) {
-      const ringGeometry = new THREE.RingGeometry(0.5, 0.7, 32)
+    // Create rings
+    for (let i = 0; i < 4; i++) {
+      const ringGeometry = new THREE.RingGeometry(0.5, 1, 32)
       const ringMaterial = new THREE.MeshBasicMaterial({
-        color: new THREE.Color().setHSL(0.6, 0.8, 0.6),
+        color: new THREE.Color().setHSL(0.6, 0.8, 0.5),
+        side: THREE.DoubleSide,
         transparent: true,
-        opacity: 0.6,
-        side: THREE.DoubleSide
+        opacity: 0.4
       })
       
       const ring = new THREE.Mesh(ringGeometry, ringMaterial)
@@ -136,18 +75,19 @@ export default function ThreeBackground() {
         (Math.random() - 0.5) * 8,
         (Math.random() - 0.5) * 4
       )
-      ring.rotation.x = Math.PI / 2
       
       ring.userData = {
         rotationSpeed: 0.01 + Math.random() * 0.02,
         pulseSpeed: 0.002 + Math.random() * 0.003
       }
       
-      specialObjects.push(ring)
+      geometries.push(ringGeometry)
+      materials.push(ringMaterial)
+      meshes.push(ring)
       scene.add(ring)
     }
 
-    // Create floating cubes with trails
+    // Create floating cubes
     for (let i = 0; i < 8; i++) {
       const cubeGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
       const cubeMaterial = new THREE.MeshBasicMaterial({
@@ -185,7 +125,9 @@ export default function ThreeBackground() {
         height: Math.random() * 2 + 1
       }
       
-      specialObjects.push(cube)
+      geometries.push(cubeGeometry)
+      materials.push(cubeMaterial)
+      meshes.push(cube)
       scene.add(cube)
     }
 
@@ -224,7 +166,9 @@ export default function ThreeBackground() {
         height: Math.random() * 3 + 1
       }
       
-      specialObjects.push(sphere)
+      geometries.push(sphereGeometry)
+      materials.push(sphereMaterial)
+      meshes.push(sphere)
       scene.add(sphere)
     }
 
@@ -261,7 +205,9 @@ export default function ThreeBackground() {
         height: Math.random() * 2.5 + 1
       }
       
-      specialObjects.push(tetra)
+      geometries.push(tetraGeometry)
+      materials.push(tetraMaterial)
+      meshes.push(tetra)
       scene.add(tetra)
     }
 
@@ -299,7 +245,9 @@ export default function ThreeBackground() {
         height: Math.random() * 4 + 1
       }
       
-      specialObjects.push(cylinder)
+      geometries.push(cylinderGeometry)
+      materials.push(cylinderMaterial)
+      meshes.push(cylinder)
       scene.add(cylinder)
     }
 
@@ -328,7 +276,20 @@ export default function ThreeBackground() {
       mouseY = -(event.clientY / window.innerHeight) * 2 + 1
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousemove', handleMouseMove)
+    }
+
+    // Handle window resize
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight
+      camera.updateProjectionMatrix()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize)
+    }
 
     // Animation
     const clock = new THREE.Clock()
@@ -347,72 +308,51 @@ export default function ThreeBackground() {
         const userData = mesh.userData
         
         // Custom rotation
-        mesh.rotation.x += userData.rotationSpeed.x
-        mesh.rotation.y += userData.rotationSpeed.y
-        mesh.rotation.z += userData.rotationSpeed.z
+        if (userData.rotationSpeed) {
+          if (userData.rotationSpeed.x) mesh.rotation.x += userData.rotationSpeed.x
+          if (userData.rotationSpeed.y) mesh.rotation.y += userData.rotationSpeed.y
+          if (userData.rotationSpeed.z) mesh.rotation.z += userData.rotationSpeed.z
+        }
         
         // Floating motion
-        mesh.position.y += Math.sin(elapsedTime * userData.floatSpeed + userData.floatOffset) * 0.01
+        if (userData.floatPhase) {
+          mesh.position.y += Math.sin(elapsedTime * 2 + userData.floatPhase) * 0.01
+        }
         
         // Orbital motion
-        const orbitAngle = elapsedTime * userData.orbitSpeed
-        mesh.position.x += Math.cos(orbitAngle) * userData.orbitRadius * 0.01
-        mesh.position.z += Math.sin(orbitAngle) * userData.orbitRadius * 0.01
-      })
-
-      // Animate special objects
-      specialObjects.forEach((obj, index) => {
-        if (obj.userData.rotationSpeed) {
-          obj.rotation.x += obj.userData.rotationSpeed.x
-          obj.rotation.y += obj.userData.rotationSpeed.y
-          obj.rotation.z += obj.userData.rotationSpeed.z
-          obj.scale.setScalar(
-            1 + Math.sin(elapsedTime * obj.userData.pulseSpeed) * 0.2
-          )
+        if (userData.orbitSpeed && userData.orbitRadius) {
+          const orbitAngle = elapsedTime * userData.orbitSpeed
+          mesh.position.x += Math.cos(orbitAngle) * userData.orbitRadius * 0.01
+          mesh.position.z += Math.sin(orbitAngle) * userData.orbitRadius * 0.01
         }
         
-        if (obj.userData.velocity) {
-          obj.position.add(obj.userData.velocity)
+        // Pulse effect
+        if (userData.pulseSpeed) {
+          const scale = 1 + Math.sin(elapsedTime * userData.pulseSpeed) * 0.2
+          mesh.scale.setScalar(scale)
+        }
+        
+        // Velocity-based movement
+        if (userData.velocity) {
+          mesh.position.add(userData.velocity)
           
           // Bounce off boundaries
-          if (Math.abs(obj.position.x) > 15) obj.userData.velocity.x *= -1
-          if (Math.abs(obj.position.y) > 12) obj.userData.velocity.y *= -1
-          if (Math.abs(obj.position.z) > 10) obj.userData.velocity.z *= -1
-          
-          // Add some gravity effect
-          obj.userData.velocity.y -= 0.0001
+          if (Math.abs(mesh.position.x) > 10) userData.velocity.x *= -1
+          if (Math.abs(mesh.position.y) > 10) userData.velocity.y *= -1
+          if (Math.abs(mesh.position.z) > 6) userData.velocity.z *= -1
         }
         
-        // Special animations for cubes
-        if (obj.userData.originalScale) {
-          const scaleMultiplier = 1 + Math.sin(elapsedTime * 2 + obj.userData.pulsePhase) * 0.1
-          obj.scale.setScalar(obj.userData.originalScale * scaleMultiplier)
+        // Wobble effect
+        if (userData.wobblePhase) {
+          mesh.rotation.x += Math.sin(elapsedTime * 3 + userData.wobblePhase) * 0.02
+          mesh.rotation.y += Math.cos(elapsedTime * 2 + userData.wobblePhase) * 0.02
         }
         
-        // Floating animation for spheres
-        if (obj.userData.floatPhase) {
-          obj.position.y += Math.sin(elapsedTime * 3 + obj.userData.floatPhase) * 0.005
-          obj.position.x += Math.cos(elapsedTime * 2 + obj.userData.floatPhase) * 0.003
-          
-          // Glow effect
-          if (obj.material.emissive) {
-            const glowIntensity = obj.userData.glowIntensity * (0.8 + Math.sin(elapsedTime * 4) * 0.2)
-            obj.material.emissiveIntensity = glowIntensity
-          }
-        }
-        
-        // Wobble animation for tetrahedrons
-        if (obj.userData.wobblePhase) {
-          obj.position.y += Math.sin(elapsedTime * 5 + obj.userData.wobblePhase) * 0.008
-          obj.rotation.x += Math.sin(elapsedTime * 3 + obj.userData.wobblePhase) * 0.02
-          obj.rotation.z += Math.cos(elapsedTime * 2 + obj.userData.wobblePhase) * 0.03
-        }
-        
-        // Bounce animation for cylinders
-        if (obj.userData.bouncePhase) {
-          obj.position.y += Math.sin(elapsedTime * 4 + obj.userData.bouncePhase) * 0.01
-          obj.scale.y = 1 + Math.sin(elapsedTime * 6 + obj.userData.bouncePhase) * 0.1
-          obj.scale.x = 1 + Math.cos(elapsedTime * 3 + obj.userData.bouncePhase) * 0.05
+        // Bounce effect
+        if (userData.bouncePhase) {
+          mesh.position.y += Math.sin(elapsedTime * 4 + userData.bouncePhase) * 0.01
+          mesh.scale.y = 1 + Math.sin(elapsedTime * 6 + userData.bouncePhase) * 0.1
+          mesh.scale.x = 1 + Math.cos(elapsedTime * 3 + userData.bouncePhase) * 0.05
         }
       })
 
@@ -426,20 +366,8 @@ export default function ThreeBackground() {
 
     animate()
 
-    // Handle resize
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      renderer.setSize(window.innerWidth, window.innerHeight)
-    }
-
-    window.addEventListener('resize', handleResize)
-
     // Cleanup
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      window.removeEventListener('resize', handleResize)
-      
       if (frameRef.current) {
         cancelAnimationFrame(frameRef.current)
       }
@@ -449,6 +377,11 @@ export default function ThreeBackground() {
       particlesGeometry.dispose()
       particlesMaterial.dispose()
       renderer.dispose()
+      
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('mousemove', handleMouseMove)
+        window.removeEventListener('resize', handleResize)
+      }
       
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement)
@@ -460,7 +393,6 @@ export default function ThreeBackground() {
     <div 
       ref={mountRef} 
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
     />
   )
 }

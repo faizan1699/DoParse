@@ -1,7 +1,14 @@
 'use client'
 
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+import './TextEditor.css'
+
+// Dynamically import ReactQuill to avoid SSR issues
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false,
+  loading: () => <div className="animate-pulse bg-gray-200 h-48 rounded-lg"></div>
+})
 
 export default function TextEditor({ 
   value, 
@@ -10,6 +17,14 @@ export default function TextEditor({
   className = '',
   theme = 'snow'
 }) {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    // Import CSS only on client side
+    import('react-quill/dist/quill.snow.css')
+  }, [])
+
   const modules = {
     toolbar: [
       [{ 'header': [1, 2, 3, false] }],
@@ -31,6 +46,16 @@ export default function TextEditor({
     'link', 'image', 'video'
   ]
 
+  if (!mounted) {
+    return (
+      <div className={`text-editor-container ${className}`}>
+        <div className="animate-pulse bg-gray-200 h-48 rounded-lg flex items-center justify-center">
+          <span className="text-gray-500">Loading editor...</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={`text-editor-container ${className}`}>
       <ReactQuill
@@ -42,49 +67,6 @@ export default function TextEditor({
         formats={formats}
         className="bg-white rounded-lg shadow-lg"
       />
-      
-      <style jsx>{`
-        .text-editor-container {
-          min-height: 200px;
-        max-height: 400px;
-        border: 2px solid #e5e7eb;
-          border-radius: 8px;
-          overflow: hidden;
-        }
-        
-        .text-editor-container .ql-toolbar {
-          border-top-left-radius: 8px;
-          border-top-right-radius: 8px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border: none;
-          padding: 8px;
-        }
-        
-        .text-editor-container .ql-container {
-          border-bottom-left-radius: 8px;
-          border-bottom-right-radius: 8px;
-        }
-        
-        .text-editor-container .ql-editor {
-          font-family: 'Inter', sans-serif;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-        
-        .text-editor-container .ql-editor:focus {
-          outline: none;
-          border-color: #4ade80;
-          box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
-        }
-        
-        .text-editor-container .ql-tooltip {
-          background: #1f2937;
-          color: white;
-          border-radius: 6px;
-          font-size: 12px;
-          padding: 4px 8px;
-        }
-      `}</style>
     </div>
   )
 }

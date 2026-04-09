@@ -103,7 +103,7 @@ export default function EditTodoPage({ params }) {
     return (
       <AuthGuard>
         <Navbar />
-        <main className="min-h-screen bg-gray-50 flex items-center justify-center border-black">
+        <main className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Todo Not Found</h2>
             <p className="text-gray-600 mb-6">The todo you're trying to edit doesn't exist.</p>

@@ -1,4 +1,5 @@
 import './globals.css'
+import ThreeBackground from '../components/ThreeBackground'
 
 export const metadata = {
   title: 'Todo App & URL Parser',
@@ -8,7 +9,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="relative">
+        <ThreeBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }

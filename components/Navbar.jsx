@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -11,7 +11,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold">Todo & URL Tools</h1>
+            <Link href="/" className="text-xl font-bold cursor-pointer">Todo & URL Tools</Link>
           </div>
           <div className="flex items-center space-x-4">
             <Link

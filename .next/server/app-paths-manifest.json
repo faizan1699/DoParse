@@ -2,5 +2,6 @@
   "/url-parser/page": "app/url-parser/page.js",
   "/todos/page": "app/todos/page.js",
   "/todos/create/page": "app/todos/create/page.js",
-  "/todos/edit/[id]/page": "app/todos/edit/[id]/page.js"
+  "/todos/edit/[id]/page": "app/todos/edit/[id]/page.js",
+  "/page": "app/page.js"
 }

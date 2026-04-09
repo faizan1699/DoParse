@@ -117,6 +117,36 @@ export default function Sidebar({ onWidthChange }) {
       color: 'indigo'
     },
     {
+      href: '/password-generator',
+      name: 'Password Generator',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      ),
+      color: 'red'
+    },
+    {
+      href: '/qr-generator',
+      name: 'QR Generator',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      ),
+      color: 'indigo'
+    },
+    {
+      href: '/markdown-editor',
+      name: 'Markdown Editor',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      ),
+      color: 'pink'
+    },
+    {
       href: '/about',
       name: 'About',
       icon: (
@@ -147,7 +177,8 @@ export default function Sidebar({ onWidthChange }) {
       pink: isActive ? 'bg-pink-600 text-white' : 'text-pink-600 hover:bg-pink-50 dark:hover:bg-pink-900 navy:hover:bg-navy-800',
       indigo: isActive ? 'bg-indigo-600 text-white' : 'text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900 navy:hover:bg-navy-800',
       gray: isActive ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 navy:hover:bg-navy-800',
-      teal: isActive ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900 navy:hover:bg-navy-800'
+      teal: isActive ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900 navy:hover:bg-navy-800',
+      red: isActive ? 'bg-red-600 text-white' : 'text-red-600 hover:bg-red-50 dark:hover:bg-red-900 navy:hover:bg-navy-800'
     }
     return colors[color] || colors.blue
   }

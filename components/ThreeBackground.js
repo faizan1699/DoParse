@@ -68,22 +68,27 @@ export default function ThreeBackground() {
       new THREE.BoxGeometry(0.5, 0.5, 0.5),
       new THREE.SphereGeometry(0.3, 32, 32),
       new THREE.ConeGeometry(0.3, 0.6, 32),
-      new THREE.TorusGeometry(0.3, 0.1, 16, 100)
+      new THREE.TorusGeometry(0.3, 0.1, 16, 100),
+      new THREE.OctahedronGeometry(0.4, 0),
+      new THREE.TetrahedronGeometry(0.4, 0),
+      new THREE.IcosahedronGeometry(0.3, 0)
     ]
 
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 25; i++) {
       const geometry = shapeTypes[Math.floor(Math.random() * shapeTypes.length)]
       const material = new THREE.MeshPhongMaterial({
         color: new THREE.Color().setHSL(Math.random(), 0.7, 0.5),
         transparent: true,
         opacity: 0.7,
-        wireframe: Math.random() > 0.5
+        wireframe: Math.random() > 0.5,
+        emissive: new THREE.Color().setHSL(Math.random(), 0.7, 0.2),
+        emissiveIntensity: 0.5
       })
 
       const mesh = new THREE.Mesh(geometry, material)
       mesh.position.set(
-        (Math.random() - 0.5) * 8,
-        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 12,
         (Math.random() - 0.5) * 8
       )
       mesh.rotation.set(
@@ -91,12 +96,187 @@ export default function ThreeBackground() {
         Math.random() * Math.PI,
         Math.random() * Math.PI
       )
-      mesh.scale.setScalar(Math.random() * 0.5 + 0.5)
+      mesh.scale.setScalar(Math.random() * 0.8 + 0.2)
+
+      // Add custom animation properties
+      mesh.userData = {
+        rotationSpeed: {
+          x: (Math.random() - 0.5) * 0.02,
+          y: (Math.random() - 0.5) * 0.02,
+          z: (Math.random() - 0.5) * 0.02
+        },
+        floatSpeed: Math.random() * 0.003 + 0.001,
+        floatOffset: Math.random() * Math.PI * 2,
+        orbitRadius: Math.random() * 0.5 + 0.1,
+        orbitSpeed: Math.random() * 0.001 + 0.0005
+      }
 
       geometries.push(geometry)
       materials.push(material)
       meshes.push(mesh)
       scene.add(mesh)
+    }
+
+    // Add special animated objects
+    const specialObjects = []
+    
+    // Create rotating rings
+    for (let i = 0; i < 3; i++) {
+      const ringGeometry = new THREE.RingGeometry(0.5, 0.7, 32)
+      const ringMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(0.6, 0.8, 0.6),
+        transparent: true,
+        opacity: 0.6,
+        side: THREE.DoubleSide
+      })
+      
+      const ring = new THREE.Mesh(ringGeometry, ringMaterial)
+      ring.position.set(
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 4
+      )
+      ring.rotation.x = Math.PI / 2
+      
+      ring.userData = {
+        rotationSpeed: 0.01 + Math.random() * 0.02,
+        pulseSpeed: 0.002 + Math.random() * 0.003
+      }
+      
+      specialObjects.push(ring)
+      scene.add(ring)
+    }
+
+    // Create floating cubes with trails
+    for (let i = 0; i < 8; i++) {
+      const cubeGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2)
+      const cubeMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(0.3, 0.9, 0.7),
+        transparent: true,
+        opacity: 0.8
+      })
+      
+      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+      cube.position.set(
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 8
+      )
+      
+      cube.userData = {
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03,
+          (Math.random() - 0.5) * 0.03
+        ),
+        rotationSpeed: new THREE.Vector3(
+          Math.random() * 0.08,
+          Math.random() * 0.08,
+          Math.random() * 0.08
+        ),
+        originalScale: Math.random() * 0.5 + 0.5,
+        pulsePhase: Math.random() * Math.PI * 2
+      }
+      
+      specialObjects.push(cube)
+      scene.add(cube)
+    }
+
+    // Create floating spheres
+    for (let i = 0; i < 6; i++) {
+      const sphereGeometry = new THREE.SphereGeometry(0.15, 24, 16)
+      const sphereMaterial = new THREE.MeshPhongMaterial({
+        color: new THREE.Color().setHSL(0.8, 0.8, 0.6),
+        transparent: true,
+        opacity: 0.7,
+        emissive: new THREE.Color().setHSL(0.8, 0.8, 0.4),
+        emissiveIntensity: 0.3
+      })
+      
+      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+      sphere.position.set(
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 12,
+        (Math.random() - 0.5) * 6
+      )
+      
+      sphere.userData = {
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.025,
+          (Math.random() - 0.5) * 0.025,
+          (Math.random() - 0.5) * 0.025
+        ),
+        rotationSpeed: Math.random() * 0.06,
+        floatPhase: Math.random() * Math.PI * 2,
+        glowIntensity: Math.random() * 0.5 + 0.5
+      }
+      
+      specialObjects.push(sphere)
+      scene.add(sphere)
+    }
+
+    // Create moving tetrahedrons
+    for (let i = 0; i < 4; i++) {
+      const tetraGeometry = new THREE.TetrahedronGeometry(0.25, 0)
+      const tetraMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(0.15, 1.0, 0.5),
+        transparent: true,
+        opacity: 0.6,
+        wireframe: true
+      })
+      
+      const tetra = new THREE.Mesh(tetraGeometry, tetraMaterial)
+      tetra.position.set(
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 10,
+        (Math.random() - 0.5) * 8
+      )
+      
+      tetra.userData = {
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.04,
+          (Math.random() - 0.5) * 0.04,
+          (Math.random() - 0.5) * 0.04
+        ),
+        rotationSpeed: Math.random() * 0.1,
+        wobblePhase: Math.random() * Math.PI * 2
+      }
+      
+      specialObjects.push(tetra)
+      scene.add(tetra)
+    }
+
+    // Create moving cylinders
+    for (let i = 0; i < 5; i++) {
+      const cylinderGeometry = new THREE.CylinderGeometry(0.1, 0.4, 16)
+      const cylinderMaterial = new THREE.MeshPhongMaterial({
+        color: new THREE.Color().setHSL(0.55, 0.7, 0.6),
+        transparent: true,
+        opacity: 0.8,
+        emissive: new THREE.Color().setHSL(0.55, 0.7, 0.2),
+        emissiveIntensity: 0.4
+      })
+      
+      const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
+      cylinder.position.set(
+        (Math.random() - 0.5) * 14,
+        (Math.random() - 0.5) * 14,
+        (Math.random() - 0.5) * 8
+      )
+      cylinder.rotation.z = Math.PI / 2
+      
+      cylinder.userData = {
+        velocity: new THREE.Vector3(
+          (Math.random() - 0.5) * 0.02,
+          (Math.random() - 0.5) * 0.02,
+          (Math.random() - 0.5) * 0.02
+        ),
+        rotationSpeed: Math.random() * 0.03,
+        bouncePhase: Math.random() * Math.PI * 2
+      }
+      
+      specialObjects.push(cylinder)
+      scene.add(cylinder)
     }
 
     // Lighting
@@ -110,6 +290,10 @@ export default function ThreeBackground() {
     const pointLight2 = new THREE.PointLight(0x3b82f6, 1, 100)
     pointLight2.position.set(-2, -3, -4)
     scene.add(pointLight2)
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+    directionalLight.position.set(5, 5, 5)
+    scene.add(directionalLight)
 
     // Mouse movement
     let mouseX = 0
@@ -132,15 +316,80 @@ export default function ThreeBackground() {
 
       // Rotate particles
       particlesMesh.rotation.y = elapsedTime * 0.05
+      particlesMesh.rotation.x = elapsedTime * 0.02
 
       // Animate geometric shapes
       meshes.forEach((mesh, index) => {
-        mesh.rotation.x += 0.01 * (index % 2 === 0 ? 1 : -1)
-        mesh.rotation.y += 0.01 * (index % 3 === 0 ? 1 : -1)
+        const userData = mesh.userData
+        
+        // Custom rotation
+        mesh.rotation.x += userData.rotationSpeed.x
+        mesh.rotation.y += userData.rotationSpeed.y
+        mesh.rotation.z += userData.rotationSpeed.z
         
         // Floating motion
-        mesh.position.y += Math.sin(elapsedTime + index) * 0.002
-        mesh.position.x += Math.cos(elapsedTime + index) * 0.001
+        mesh.position.y += Math.sin(elapsedTime * userData.floatSpeed + userData.floatOffset) * 0.01
+        
+        // Orbital motion
+        const orbitAngle = elapsedTime * userData.orbitSpeed
+        mesh.position.x += Math.cos(orbitAngle) * userData.orbitRadius * 0.01
+        mesh.position.z += Math.sin(orbitAngle) * userData.orbitRadius * 0.01
+      })
+
+      // Animate special objects
+      specialObjects.forEach((obj, index) => {
+        if (obj.userData.rotationSpeed) {
+          obj.rotation.x += obj.userData.rotationSpeed.x
+          obj.rotation.y += obj.userData.rotationSpeed.y
+          obj.rotation.z += obj.userData.rotationSpeed.z
+          obj.scale.setScalar(
+            1 + Math.sin(elapsedTime * obj.userData.pulseSpeed) * 0.2
+          )
+        }
+        
+        if (obj.userData.velocity) {
+          obj.position.add(obj.userData.velocity)
+          
+          // Bounce off boundaries
+          if (Math.abs(obj.position.x) > 15) obj.userData.velocity.x *= -1
+          if (Math.abs(obj.position.y) > 12) obj.userData.velocity.y *= -1
+          if (Math.abs(obj.position.z) > 10) obj.userData.velocity.z *= -1
+          
+          // Add some gravity effect
+          obj.userData.velocity.y -= 0.0001
+        }
+        
+        // Special animations for cubes
+        if (obj.userData.originalScale) {
+          const scaleMultiplier = 1 + Math.sin(elapsedTime * 2 + obj.userData.pulsePhase) * 0.1
+          obj.scale.setScalar(obj.userData.originalScale * scaleMultiplier)
+        }
+        
+        // Floating animation for spheres
+        if (obj.userData.floatPhase) {
+          obj.position.y += Math.sin(elapsedTime * 3 + obj.userData.floatPhase) * 0.005
+          obj.position.x += Math.cos(elapsedTime * 2 + obj.userData.floatPhase) * 0.003
+          
+          // Glow effect
+          if (obj.material.emissive) {
+            const glowIntensity = obj.userData.glowIntensity * (0.8 + Math.sin(elapsedTime * 4) * 0.2)
+            obj.material.emissiveIntensity = glowIntensity
+          }
+        }
+        
+        // Wobble animation for tetrahedrons
+        if (obj.userData.wobblePhase) {
+          obj.position.y += Math.sin(elapsedTime * 5 + obj.userData.wobblePhase) * 0.008
+          obj.rotation.x += Math.sin(elapsedTime * 3 + obj.userData.wobblePhase) * 0.02
+          obj.rotation.z += Math.cos(elapsedTime * 2 + obj.userData.wobblePhase) * 0.03
+        }
+        
+        // Bounce animation for cylinders
+        if (obj.userData.bouncePhase) {
+          obj.position.y += Math.sin(elapsedTime * 4 + obj.userData.bouncePhase) * 0.01
+          obj.scale.y = 1 + Math.sin(elapsedTime * 6 + obj.userData.bouncePhase) * 0.1
+          obj.scale.x = 1 + Math.cos(elapsedTime * 3 + obj.userData.bouncePhase) * 0.05
+        }
       })
 
       // Camera movement based on mouse

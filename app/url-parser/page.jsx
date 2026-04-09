@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Navbar from '../../components/Navbar'
+import ThreeBackground from '../../components/ThreeBackground'
 
 export default function UrlParserPage() {
   const [urlInput, setUrlInput] = useState('')
@@ -173,7 +174,8 @@ export default function UrlParserPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50">
+      <ThreeBackground />
+      <main className="min-h-screen bg-gray-50 relative z-10">
         <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 overflow-x-auto">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">URL Parser Pro</h1>

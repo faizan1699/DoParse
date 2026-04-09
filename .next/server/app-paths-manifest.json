@@ -1,4 +1,5 @@
 {
+  "/not-found": "app/not-found.js",
   "/url-parser/page": "app/url-parser/page.js",
   "/todos/page": "app/todos/page.js",
   "/todos/create/page": "app/todos/create/page.js",

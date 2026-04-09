@@ -10,10 +10,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="relative">
-        <ThreeBackground />
         <div className="relative z-10">
           {children}
         </div>
+        <ThreeBackground />
       </body>
     </html>
   )

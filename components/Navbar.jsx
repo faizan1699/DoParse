@@ -18,14 +18,13 @@ export default function Navbar() {
   }, [])
 
   return (
-    <nav className={`bg-green-600 text-white shadow-lg transition-all duration-300 ${
-      scrolled ? 'bg-green-700 shadow-2xl' : ''
-    }`}>
+    <nav className={`bg-green-600 text-white shadow-lg transition-all duration-300 ${scrolled ? 'bg-green-700 shadow-2xl' : ''
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="text-xl font-bold cursor-pointer transition-all duration-300 hover:scale-110 hover:text-green-200 flex items-center gap-2"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,11 +36,10 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <Link
               href="/todos"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                pathname === '/todos' || pathname.startsWith('/todos/')
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/todos' || pathname.startsWith('/todos/')
                   ? 'bg-green-700 text-white shadow-lg'
                   : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,12 +49,25 @@ export default function Navbar() {
               </span>
             </Link>
             <Link
-              href="/url-parser"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                pathname === '/url-parser'
+              href="/json-formatter"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/json-formatter'
                   ? 'bg-green-700 text-white shadow-lg'
                   : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
-              }`}
+                }`}
+            >
+              <span className="flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                JSON Formatter
+              </span>
+            </Link>
+            <Link
+              href="/url-parser"
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/url-parser'
+                  ? 'bg-green-700 text-white shadow-lg'
+                  : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
+                }`}
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,13 +76,13 @@ export default function Navbar() {
                 URL Parser
               </span>
             </Link>
+
             <Link
               href="/about"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                pathname === '/about'
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/about'
                   ? 'bg-green-700 text-white shadow-lg'
                   : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,11 +93,10 @@ export default function Navbar() {
             </Link>
             <Link
               href="/text-editor"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                pathname === '/text-editor'
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/text-editor'
                   ? 'bg-green-700 text-white shadow-lg'
                   : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,11 +107,10 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                pathname === '/contact'
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 transform hover:scale-105 ${pathname === '/contact'
                   ? 'bg-green-700 text-white shadow-lg'
                   : 'text-green-100 hover:bg-green-500 hover:text-white hover:shadow-lg'
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

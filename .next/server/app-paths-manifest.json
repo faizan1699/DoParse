@@ -1,8 +1,4 @@
 {
   "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/text-editor/page": "app/text-editor/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/todos/page": "app/todos/page.js",
-  "/todos/create/page": "app/todos/create/page.js"
+  "/json-formatter/page": "app/json-formatter/page.js"
 }

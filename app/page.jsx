@@ -117,6 +117,43 @@ export default function Home() {
                 <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-2"></div>
               </AnimatedCard>
             </Link>
+
+            {/* JSON Formatter Card */}
+            <Link href="/json-formatter">
+              <AnimatedCard delay="0.2" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
+                    JSON Formatter
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Format, validate, and analyze JSON data with advanced developer tools. 
+                    Get statistics, minify output, and ensure clean JSON structure.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full animate-pulse">
+                      Format & Validate
+                    </span>
+                    <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      Statistics
+                    </span>
+                    <span className="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      Minify
+                    </span>
+                  </div>
+                  <div className="flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-colors">
+                    <span>Format JSON Now</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+              </AnimatedCard>
+            </Link>
           </div>
 
           {/* Features Section */}

@@ -1,4 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/json-formatter/page": "app/json-formatter/page.js"
+  "/json-formatter/page": "app/json-formatter/page.js",
+  "/base64-converter/page": "app/base64-converter/page.js"
 }

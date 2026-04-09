@@ -1,13 +1,11 @@
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
-import AnimatedCard from '../components/AnimatedCard'
-import AnimatedButton from '../components/AnimatedButton'
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+      <main className="min-h-screen">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 overflow-x-auto">
           {/* Hero Section */}
           <div className="text-center mb-16 animate-fade-in-up">
@@ -147,6 +145,43 @@ export default function Home() {
                   </div>
                   <div className="flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-colors">
                     <span>Format JSON Now</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+              </AnimatedCard>
+            </Link>
+            
+            {/* Base64 Converter Card */}
+            <Link href="/base64-converter">
+              <AnimatedCard delay="0.4" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors">
+                    Base64 Converter
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Encode and decode Base64 strings with advanced developer tools. 
+                    Upload files, batch process, and download results instantly.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full animate-pulse">
+                      Encode & Decode
+                    </span>
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      File Upload
+                    </span>
+                    <span className="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      Download
+                    </span>
+                  </div>
+                  <div className="flex items-center text-orange-600 font-semibold group-hover:text-orange-700 transition-colors">
+                    <span>Convert Now</span>
                     <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>

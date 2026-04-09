@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '../../components/Navbar'
-import AuthGuard from '../../components/AuthGuard'
 import { todoStorage } from '../../utils/todoStorage'
 
 export default function TodosPage() {
@@ -39,7 +38,7 @@ export default function TodosPage() {
   }
 
   return (
-    <AuthGuard>
+    <>
       <Navbar />
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 overflow-x-auto">
@@ -177,6 +176,6 @@ export default function TodosPage() {
           )}
         </div>
       </main>
-    </AuthGuard>
+    </>
   )
 }

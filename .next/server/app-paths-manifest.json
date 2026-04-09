@@ -1,4 +1,6 @@
 {
   "/json-formatter/page": "app/json-formatter/page.js",
-  "/base64-converter/page": "app/base64-converter/page.js"
+  "/base64-converter/page": "app/base64-converter/page.js",
+  "/todos/page": "app/todos/page.js",
+  "/url-parser/page": "app/url-parser/page.js"
 }

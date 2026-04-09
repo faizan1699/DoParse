@@ -11,6 +11,27 @@
   body {
     @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200;
   }
+  
+  /* Navy theme styles */
+  html.navy body {
+    @apply bg-navy-950 text-navy-50;
+  }
+  
+  html.navy .card {
+    @apply bg-navy-900 border-navy-700;
+  }
+  
+  html.navy .input {
+    @apply bg-navy-800 border-navy-600 text-navy-50 placeholder-navy-400;
+  }
+  
+  html.navy .button-primary {
+    @apply bg-navy-500 hover:bg-navy-400 text-white;
+  }
+  
+  html.navy .button-secondary {
+    @apply bg-navy-800 hover:bg-navy-700 text-navy-50;
+  }
 }
 
 @layer components {
@@ -28,6 +49,23 @@
   
   .button-secondary {
     @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100;
+  }
+  
+  /* Navy theme component overrides */
+  html.navy .card {
+    @apply bg-navy-900 border-navy-700;
+  }
+  
+  html.navy .input {
+    @apply bg-navy-800 border-navy-600 text-navy-50 placeholder-navy-400;
+  }
+  
+  html.navy .button-primary {
+    @apply bg-navy-500 hover:bg-navy-400 text-white;
+  }
+  
+  html.navy .button-secondary {
+    @apply bg-navy-800 hover:bg-navy-700 text-navy-50;
   }
 }
 

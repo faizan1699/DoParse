@@ -140,14 +140,14 @@ export default function Sidebar({ onWidthChange }) {
 
   const getColorClasses = (color, isActive = false) => {
     const colors = {
-      blue: isActive ? 'bg-blue-600 text-white' : 'text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900',
-      green: isActive ? 'bg-green-600 text-white' : 'text-green-600 hover:bg-green-50 dark:hover:bg-green-900',
-      purple: isActive ? 'bg-purple-600 text-white' : 'text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900',
-      orange: isActive ? 'bg-orange-600 text-white' : 'text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900',
-      pink: isActive ? 'bg-pink-600 text-white' : 'text-pink-600 hover:bg-pink-50 dark:hover:bg-pink-900',
-      indigo: isActive ? 'bg-indigo-600 text-white' : 'text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900',
-      gray: isActive ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700',
-      teal: isActive ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900'
+      blue: isActive ? 'bg-blue-600 text-white' : 'text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900 navy:hover:bg-navy-800',
+      green: isActive ? 'bg-green-600 text-white' : 'text-green-600 hover:bg-green-50 dark:hover:bg-green-900 navy:hover:bg-navy-800',
+      purple: isActive ? 'bg-purple-600 text-white' : 'text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900 navy:hover:bg-navy-800',
+      orange: isActive ? 'bg-orange-600 text-white' : 'text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900 navy:hover:bg-navy-800',
+      pink: isActive ? 'bg-pink-600 text-white' : 'text-pink-600 hover:bg-pink-50 dark:hover:bg-pink-900 navy:hover:bg-navy-800',
+      indigo: isActive ? 'bg-indigo-600 text-white' : 'text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900 navy:hover:bg-navy-800',
+      gray: isActive ? 'bg-gray-600 text-white' : 'text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 navy:hover:bg-navy-800',
+      teal: isActive ? 'bg-teal-600 text-white' : 'text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-900 navy:hover:bg-navy-800'
     }
     return colors[color] || colors.blue
   }
@@ -187,7 +187,7 @@ export default function Sidebar({ onWidthChange }) {
 
       {/* Sidebar */}
       <div className={`
-        sidebar-container fixed left-0 top-0 h-full bg-white dark:bg-gray-800 shadow-xl z-50 transition-all duration-300 transform
+        sidebar-container fixed left-0 top-0 h-full bg-white dark:bg-gray-800 navy:bg-navy-900 shadow-xl z-50 transition-all duration-300 transform
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
         md:translate-x-0 
         ${isCollapsed ? 'w-16' : 'w-64'}
@@ -195,24 +195,24 @@ export default function Sidebar({ onWidthChange }) {
       `}>
         <div className="flex flex-col h-full">
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 navy:border-navy-700">
             {!isCollapsed && (
               <div className="flex items-center gap-2">
                 <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                <span className="font-bold text-gray-900 dark:text-gray-100">Tools</span>
+                <span className="font-bold text-gray-900 dark:text-gray-100 navy:text-navy-50">Tools</span>
               </div>
             )}
             
             {/* Collapse Toggle (Desktop Only) */}
             <button
               onClick={toggleCollapse}
-              className="hidden md:flex items-center justify-center p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="hidden md:flex items-center justify-center p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 navy:hover:bg-navy-800 transition-colors"
               aria-label="Toggle sidebar collapse"
             >
               <svg
-                className="w-5 h-5 text-gray-500 dark:text-gray-400 transform transition-transform"
+                className="w-5 h-5 text-gray-500 dark:text-gray-400 navy:text-navy-400 transform transition-transform"
                 style={{ transform: isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 fill="none"
                 stroke="currentColor"
@@ -225,10 +225,10 @@ export default function Sidebar({ onWidthChange }) {
             {/* Mobile Close Button */}
             <button
               onClick={closeSidebar}
-              className="md:hidden p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="md:hidden p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 navy:hover:bg-navy-800 transition-colors"
               aria-label="Close sidebar"
             >
-              <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-gray-500 dark:text-gray-400 navy:text-navy-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

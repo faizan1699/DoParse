@@ -6,19 +6,19 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen dark:bg-gray-900">
+      <main className="min-h-screen dark:bg-gray-900 navy:bg-navy-950">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 overflow-x-auto">
           {/* Hero Section */}
           <div className="text-center mb-16 animate-fade-in-up">
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 navy:text-navy-50 mb-6">
               <Link href="/" className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
                 Todo & URL Tools
               </Link>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+            <p className="text-xl text-gray-600 dark:text-gray-300 navy:text-navy-200 max-w-3xl mx-auto mb-8 animate-slide-in-left" style={{ animationDelay: '200ms' }}>
               Powerful productivity tools to manage your tasks and analyze URLs with ease
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400" style={{ animationDelay: '400ms' }}>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400 navy:text-navy-300" style={{ animationDelay: '400ms' }}>
               <span className="flex items-center gap-2 animate-slide-in-right">
                 <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />

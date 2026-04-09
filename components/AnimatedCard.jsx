@@ -9,7 +9,7 @@ export default function AnimatedCard({ children, className = '', hover = true, d
     transform transition-all duration-300 ease-out
     ${hover ? 'hover:scale-105 hover:shadow-2xl' : ''}
     ${isHovered ? 'shadow-2xl' : 'shadow-lg'}
-    bg-white dark:bg-gray-800
+    bg-white dark:bg-gray-800 navy:bg-navy-900
     ${className}
   `
 

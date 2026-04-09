@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
         <meta charSet="utf-8" />
       </Head>
       <html lang="en">
-        <body className="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+        <body className="bg-gray-50 dark:bg-gray-900 navy:bg-navy-950 transition-colors duration-200">
           <ThemeProvider>
             <Sidebar onWidthChange={setSidebarWidth} />
             <div 

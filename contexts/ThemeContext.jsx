@@ -5,20 +5,23 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('navy')
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme') || 'light'
+    const savedTheme = localStorage.getItem('theme') || 'navy'
     setTheme(savedTheme)
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+    document.documentElement.classList.remove('light', 'dark', 'navy')
+    document.documentElement.classList.add(savedTheme)
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
+    const themes = ['light', 'dark', 'navy']
+    const currentIndex = themes.indexOf(theme)
+    const newTheme = themes[(currentIndex + 1) % themes.length]
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+    document.documentElement.classList.remove('light', 'dark', 'navy')
+    document.documentElement.classList.add(newTheme)
   }
 
   return (

@@ -1,8 +1,15 @@
 {
-  "/not-found": "app/not-found.js",
+  "/_not-found": "app/_not-found.js",
+  "/base64-converter/page": "app/base64-converter/page.js",
+  "/color-palette/page": "app/color-palette/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/json-formatter/page": "app/json-formatter/page.js",
+  "/editor/page": "app/editor/page.js",
+  "/page": "app/page.js",
+  "/text-editor/page": "app/text-editor/page.js",
+  "/todos/create/page": "app/todos/create/page.js",
+  "/todos/edit/[id]/page": "app/todos/edit/[id]/page.js",
   "/todos/page": "app/todos/page.js",
   "/url-parser/page": "app/url-parser/page.js",
-  "/text-editor/page": "app/text-editor/page.js",
-  "/color-palette/page": "app/color-palette/page.js",
-  "/page": "app/page.js"
+  "/about/page": "app/about/page.js"
 }

@@ -1,44 +1,6 @@
-'use client'
-
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
-import { Metadata } from 'next'
-
-export const metadata = {
-  title: 'Todo & URL Tools - Developer Tools Suite',
-  description: 'Boost your productivity with our comprehensive suite of developer tools. Manage tasks, format JSON, encode Base64, generate color palettes, parse URLs, and edit text - all in one place.',
-  keywords: [
-    'developer tools',
-    'productivity suite',
-    'task management',
-    'json tools',
-    'base64 tools',
-    'color tools',
-    'url tools',
-    'text editor',
-    'web development',
-    'next.js tools',
-    'react tools'
-  ],
-  openGraph: {
-    title: 'Todo & URL Tools - Developer Tools Suite',
-    description: 'Boost your productivity with our comprehensive suite of developer tools. Manage tasks, format JSON, encode Base64, generate color palettes, parse URLs, and edit text - all in one place.',
-    url: 'https://todo-url-tools.vercel.app',
-    images: [
-      {
-        url: '/og-home.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Todo & URL Tools - Developer Tools Suite',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Todo & URL Tools - Developer Tools Suite',
-    description: 'Boost your productivity with our comprehensive suite of developer tools. Manage tasks, format JSON, encode Base64, generate color palettes, parse URLs, and edit text - all in one place.',
-    images: ['/og-home.jpg'],
-  },
-}
+import AnimatedCard from '../components/AnimatedCard'
 
 export default function Home() {
   return (

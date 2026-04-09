@@ -4,44 +4,6 @@ import { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
-export const metadata = {
-  title: 'Color Palette Generator - Free Color Scheme Tool',
-  description: 'Generate beautiful color palettes with our free online color palette generator. Create complementary, analogous, triadic, monochromatic, and tetradic color schemes. Perfect for designers and developers.',
-  keywords: [
-    'color palette generator',
-    'color scheme generator',
-    'color combinations',
-    'color theory',
-    'design tools',
-    'web design',
-    'ui design',
-    'color picker',
-    'hex colors',
-    'rgb colors',
-    'hsl colors',
-    'color harmonies',
-    'palette creator'
-  ],
-  openGraph: {
-    title: 'Color Palette Generator - Free Color Scheme Tool',
-    description: 'Generate beautiful color palettes with our free online color palette generator. Create complementary, analogous, triadic, monochromatic, and tetradic color schemes.',
-    url: 'https://todo-url-tools.vercel.app/color-palette',
-    images: [
-      {
-        url: '/og-color-palette.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Color Palette Generator Tool',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Color Palette Generator - Free Color Scheme Tool',
-    description: 'Generate beautiful color palettes with our free online color palette generator. Create complementary, analogous, triadic, monochromatic, and tetradic color schemes.',
-    images: ['/og-color-palette.jpg'],
-  },
-}
-
 export default function ColorPalettePage() {
   const [baseColor, setBaseColor] = useState('#3B82F6')
   const [paletteType, setPaletteType] = useState('complementary')

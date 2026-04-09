@@ -3,43 +3,6 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar'
 
-export const metadata = {
-  title: 'JSON Formatter & Validator - Free Online JSON Tool',
-  description: 'Format, validate, and analyze JSON data with our free online JSON formatter. Get statistics, minify output, and ensure clean JSON structure. Perfect for developers working with APIs and configuration files.',
-  keywords: [
-    'json formatter',
-    'json validator',
-    'json beautifier',
-    'json minifier',
-    'json parser',
-    'json analyzer',
-    'json statistics',
-    'api tools',
-    'developer tools',
-    'json tools',
-    'data validation',
-    'json formatting'
-  ],
-  openGraph: {
-    title: 'JSON Formatter & Validator - Free Online JSON Tool',
-    description: 'Format, validate, and analyze JSON data with our free online JSON formatter. Get statistics, minify output, and ensure clean JSON structure.',
-    url: 'https://todo-url-tools.vercel.app/json-formatter',
-    images: [
-      {
-        url: '/og-json-formatter.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'JSON Formatter & Validator Tool',
-      },
-    ],
-  },
-  twitter: {
-    title: 'JSON Formatter & Validator - Free Online JSON Tool',
-    description: 'Format, validate, and analyze JSON data with our free online JSON formatter. Get statistics, minify output, and ensure clean JSON structure.',
-    images: ['/og-json-formatter.jpg'],
-  },
-}
-
 export default function JsonFormatterPage() {
   const [jsonInput, setJsonInput] = useState('')
   const [formattedJson, setFormattedJson] = useState('')

@@ -1,8 +1,9 @@
-'use client';
+'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -33,6 +34,9 @@ export default function Navbar() {
               <span className="hidden sm:inline">Todo & URL Tools</span>
               <span className="sm:hidden">Tools</span>
             </Link>
+          </div>
+          <div className="flex items-center">
+            <ThemeToggle />
           </div>
         </div>
       </div>

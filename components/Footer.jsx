@@ -88,7 +88,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 dark:bg-gray-950 text-white">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
@@ -122,7 +122,7 @@ export default function Footer() {
                   className={`block px-3 py-2 rounded-lg transition-all duration-200 ${
                     pathname === page.href
                       ? 'bg-blue-600 text-white'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                      : 'text-gray-300 hover:bg-gray-800 dark:hover:bg-gray-700 hover:text-white'
                   }`}
                 >
                   {page.name}

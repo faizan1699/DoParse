@@ -49,6 +49,11 @@
       "static/chunks/main-app.js",
       "static/css/app/text-editor/page.css",
       "static/chunks/app/text-editor/page.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
     ]
   }
 }

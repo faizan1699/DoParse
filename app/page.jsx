@@ -41,13 +41,13 @@ export default function Home() {
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
             <Link href="/todos">
-              <AnimatedCard  delay="0" className="group overflow-hidden border border-gray-100">
+              <AnimatedCard delay="0" className="group overflow-hidden border border-gray-100">
                 <div className="p-8">
                   <div className="bg-gradient-to-br from-green-100 to-green-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 001.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">
@@ -69,7 +69,7 @@ export default function Home() {
                     </span>
                   </div>
                   <div className="flex items-center text-green-600 font-semibold group-hover:text-green-700 transition-colors">
-                    Get Started
+                    <span>Get Started</span>
                     <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -188,6 +188,158 @@ export default function Home() {
                     </svg>
                   </div>
                 </div>
+              </AnimatedCard>
+            </Link>
+
+            {/* Password Generator Card */}
+            <Link href="/password-generator">
+              <AnimatedCard delay="0.6" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-red-100 to-red-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition-colors">
+                    Password Generator
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Generate strong, secure passwords with customizable options. 
+                    Include symbols, numbers, and uppercase letters for maximum security.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full animate-pulse">
+                      Secure
+                    </span>
+                    <span className="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      Customizable
+                    </span>
+                    <span className="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      Copy to Clipboard
+                    </span>
+                  </div>
+                  <div className="flex items-center text-red-600 font-semibold group-hover:text-red-700 transition-colors">
+                    <span>Generate Now</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-red-500 to-red-600 h-2"></div>
+              </AnimatedCard>
+            </Link>
+
+            {/* QR Code Generator Card */}
+            <Link href="/qr-generator">
+              <AnimatedCard delay="0.8" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors">
+                    QR Code Generator
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Create QR codes for URLs, text, and WiFi networks. 
+                    Customize colors and download in multiple formats instantly.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full animate-pulse">
+                      Custom Colors
+                    </span>
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      Multiple Formats
+                    </span>
+                    <span className="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      High Quality
+                    </span>
+                  </div>
+                  <div className="flex items-center text-indigo-600 font-semibold group-hover:text-indigo-700 transition-colors">
+                    <span>Create Now</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-indigo-500 to-indigo-600 h-2"></div>
+              </AnimatedCard>
+            </Link>
+
+            {/* Markdown Editor Card */}
+            <Link href="/markdown-editor">
+              <AnimatedCard delay="1.0" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-pink-100 to-pink-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">
+                    Markdown Editor
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Write and preview Markdown in real-time. 
+                    Export to HTML, PDF, or copy formatted text instantly.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full animate-pulse">
+                      Live Preview
+                    </span>
+                    <span className="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      Export Options
+                    </span>
+                    <span className="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      Syntax Highlighting
+                    </span>
+                  </div>
+                  <div className="flex items-center text-pink-600 font-semibold group-hover:text-pink-700 transition-colors">
+                    <span>Start Writing</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-pink-500 to-pink-600 h-2"></div>
+              </AnimatedCard>
+            </Link>
+
+            {/* Color Palette Generator Card */}
+            <Link href="/color-palette">
+              <AnimatedCard delay="1.2" className="group overflow-hidden border border-gray-100">
+                <div className="p-8">
+                  <div className="bg-gradient-to-br from-teal-100 to-teal-200 rounded-xl p-4 w-16 h-16 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-teal-600 transition-colors">
+                    Color Palette Generator
+                  </h2>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    Generate beautiful color palettes and schemes. 
+                    Extract colors from images and create harmonious combinations.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full animate-pulse">
+                      AI Powered
+                    </span>
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '200ms' }}>
+                      Export Formats
+                    </span>
+                    <span className="px-3 py-1 bg-teal-100 text-teal-700 text-xs font-semibold rounded-full animate-pulse" style={{ animationDelay: '400ms' }}>
+                      Image Upload
+                    </span>
+                  </div>
+                  <div className="flex items-center text-teal-600 font-semibold group-hover:text-teal-700 transition-colors">
+                    <span>Generate Now</span>
+                    <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-teal-500 to-teal-600 h-2"></div>
               </AnimatedCard>
             </Link>
           </div>

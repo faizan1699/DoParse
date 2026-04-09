@@ -5,22 +5,20 @@ import { createContext, useContext, useState, useEffect } from 'react'
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('navy')
+  const [theme, setTheme] = useState('light')
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'navy'
+    const savedTheme = localStorage.getItem('theme') || 'light'
     setTheme(savedTheme)
-    document.documentElement.classList.remove('light', 'dark', 'navy')
+    document.documentElement.classList.remove('light', 'dark')
     document.documentElement.classList.add(savedTheme)
   }, [])
 
   const toggleTheme = () => {
-    const themes = ['light', 'dark', 'navy']
-    const currentIndex = themes.indexOf(theme)
-    const newTheme = themes[(currentIndex + 1) % themes.length]
+    const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.remove('light', 'dark', 'navy')
+    document.documentElement.classList.remove('light', 'dark')
     document.documentElement.classList.add(newTheme)
   }
 

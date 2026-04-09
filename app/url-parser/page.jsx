@@ -3,6 +3,44 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar'
 
+export const metadata = {
+  title: 'URL Parser Pro - Advanced URL Analysis Tool',
+  description: 'Parse and analyze URLs with our advanced URL parser tool. Extract components, encode/decode URLs, validate syntax, and get detailed URL statistics. Perfect for developers working with web applications.',
+  keywords: [
+    'url parser',
+    'url analyzer',
+    'url decoder',
+    'url encoder',
+    'url validator',
+    'url components',
+    'query string parser',
+    'url tools',
+    'web development',
+    'url analysis',
+    'url structure',
+    'free url tool',
+    'developer utilities'
+  ],
+  openGraph: {
+    title: 'URL Parser Pro - Advanced URL Analysis Tool',
+    description: 'Parse and analyze URLs with our advanced URL parser tool. Extract components, encode/decode URLs, validate syntax, and get detailed URL statistics.',
+    url: 'https://todo-url-tools.vercel.app/url-parser',
+    images: [
+      {
+        url: '/og-url-parser.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'URL Parser Pro Tool',
+      },
+    ],
+  },
+  twitter: {
+    title: 'URL Parser Pro - Advanced URL Analysis Tool',
+    description: 'Parse and analyze URLs with our advanced URL parser tool. Extract components, encode/decode URLs, validate syntax, and get detailed URL statistics.',
+    images: ['/og-url-parser.jpg'],
+  },
+}
+
 export default function UrlParserPage() {
   const [urlInput, setUrlInput] = useState('')
   const [parsedUrl, setParsedUrl] = useState(null)

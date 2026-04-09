@@ -1,6 +1,45 @@
 'use client'
 
 import Navbar from '../../components/Navbar'
+import Footer from '../../components/Footer'
+
+export const metadata = {
+  title: 'About Todo & URL Tools - Developer Tools Suite',
+  description: 'Learn about Todo & URL Tools - a comprehensive suite of free developer tools including task management, JSON formatting, Base64 encoding, color palette generation, URL parsing, and rich text editing.',
+  keywords: [
+    'about todo tools',
+    'developer tools suite',
+    'web development tools',
+    'productivity tools',
+    'free online tools',
+    'task management',
+    'json tools',
+    'base64 tools',
+    'color tools',
+    'url tools',
+    'text editor',
+    'about page',
+    'tool suite'
+  ],
+  openGraph: {
+    title: 'About Todo & URL Tools - Developer Tools Suite',
+    description: 'Learn about Todo & URL Tools - a comprehensive suite of free developer tools including task management, JSON formatting, Base64 encoding, color palette generation, URL parsing, and rich text editing.',
+    url: 'https://todo-url-tools.vercel.app/about',
+    images: [
+      {
+        url: '/og-about.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About Todo & URL Tools',
+      },
+    ],
+  },
+  twitter: {
+    title: 'About Todo & URL Tools - Developer Tools Suite',
+    description: 'Learn about Todo & URL Tools - a comprehensive suite of free developer tools including task management, JSON formatting, Base64 encoding, color palette generation, URL parsing, and rich text editing.',
+    images: ['/og-about.jpg'],
+  },
+}
 
 export default function AboutPage() {
   return (

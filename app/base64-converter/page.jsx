@@ -3,6 +3,44 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar'
 
+export const metadata = {
+  title: 'Base64 Encoder/Decoder - Free Online Base64 Tool',
+  description: 'Encode and decode Base64 strings with our free online Base64 converter. Upload files, batch process data, and download results instantly. Perfect for developers working with data encoding.',
+  keywords: [
+    'base64 encoder',
+    'base64 decoder',
+    'base64 converter',
+    'encode base64',
+    'decode base64',
+    'base64 tools',
+    'data encoding',
+    'file encoding',
+    'text encoding',
+    'developer tools',
+    'encoding tools',
+    'base64 online',
+    'free base64 tool'
+  ],
+  openGraph: {
+    title: 'Base64 Encoder/Decoder - Free Online Base64 Tool',
+    description: 'Encode and decode Base64 strings with our free online Base64 converter. Upload files, batch process data, and download results instantly.',
+    url: 'https://todo-url-tools.vercel.app/base64-converter',
+    images: [
+      {
+        url: '/og-base64-converter.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Base64 Encoder/Decoder Tool',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Base64 Encoder/Decoder - Free Online Base64 Tool',
+    description: 'Encode and decode Base64 strings with our free online Base64 converter. Upload files, batch process data, and download results instantly.',
+    images: ['/og-base64-converter.jpg'],
+  },
+}
+
 export default function Base64ConverterPage() {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')

@@ -6,6 +6,44 @@ import Link from 'next/link'
 import Navbar from '../../components/Navbar'
 import { todoStorage } from '../../utils/todoStorage'
 
+export const metadata = {
+  title: 'Todo Manager - Free Task Management Tool',
+  description: 'Manage your tasks efficiently with our free online todo manager. Create, edit, complete, and organize your todos with our intuitive task management system. Perfect for personal and professional productivity.',
+  keywords: [
+    'todo manager',
+    'task management',
+    'todo list',
+    'task organizer',
+    'productivity tool',
+    'free todo app',
+    'online task manager',
+    'personal organizer',
+    'task tracker',
+    'todo app',
+    'task management tool',
+    'productivity suite',
+    'free task tool'
+  ],
+  openGraph: {
+    title: 'Todo Manager - Free Task Management Tool',
+    description: 'Manage your tasks efficiently with our free online todo manager. Create, edit, complete, and organize your todos with our intuitive task management system.',
+    url: 'https://todo-url-tools.vercel.app/todos',
+    images: [
+      {
+        url: '/og-todos.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Todo Manager Tool',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Todo Manager - Free Task Management Tool',
+    description: 'Manage your tasks efficiently with our free online todo manager. Create, edit, complete, and organize your todos with our intuitive task management system.',
+    images: ['/og-todos.jpg'],
+  },
+}
+
 export default function TodosPage() {
   const [todos, setTodos] = useState([])
   const [isLoading, setIsLoading] = useState(true)

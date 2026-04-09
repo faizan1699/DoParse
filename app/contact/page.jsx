@@ -3,6 +3,44 @@
 import { useState } from 'react'
 import Navbar from '../../components/Navbar'
 import TextEditor from '../../components/TextEditor'
+import Footer from '../../components/Footer'
+
+export const metadata = {
+  title: 'Contact Todo & URL Tools - Get in Touch',
+  description: 'Contact the Todo & URL Tools team with your feedback, suggestions, or support requests. We value your input and are here to help with our developer tools suite.',
+  keywords: [
+    'contact todo tools',
+    'developer tools support',
+    'feedback form',
+    'contact us',
+    'support request',
+    'tool suggestions',
+    'web development help',
+    'productivity tools contact',
+    'get in touch',
+    'contact form',
+    'user feedback',
+    'tool support'
+  ],
+  openGraph: {
+    title: 'Contact Todo & URL Tools - Get in Touch',
+    description: 'Contact the Todo & URL Tools team with your feedback, suggestions, or support requests. We value your input and are here to help with our developer tools suite.',
+    url: 'https://todo-url-tools.vercel.app/contact',
+    images: [
+      {
+        url: '/og-contact.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Contact Todo & URL Tools',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Contact Todo & URL Tools - Get in Touch',
+    description: 'Contact the Todo & URL Tools team with your feedback, suggestions, or support requests. We value your input and are here to help with our developer tools suite.',
+    images: ['/og-contact.jpg'],
+  },
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

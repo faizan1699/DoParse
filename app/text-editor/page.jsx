@@ -1,9 +1,47 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '../../components/Navbar'
 import TextEditor from '../../components/TextEditor'
+
+export const metadata = {
+  title: 'Rich Text Editor - Free Online Document Editor',
+  description: 'Create and edit documents with our free online rich text editor. Format text, add styles, and export your work. Perfect for writing, note-taking, and document creation.',
+  keywords: [
+    'rich text editor',
+    'online text editor',
+    'document editor',
+    'text formatting',
+    'note taking',
+    'writing tool',
+    'document creator',
+    'free text editor',
+    'online editor',
+    'text formatting tool',
+    'document writing',
+    'web editor',
+    'free writing tool'
+  ],
+  openGraph: {
+    title: 'Rich Text Editor - Free Online Document Editor',
+    description: 'Create and edit documents with our free online rich text editor. Format text, add styles, and export your work. Perfect for writing, note-taking, and document creation.',
+    url: 'https://todo-url-tools.vercel.app/text-editor',
+    images: [
+      {
+        url: '/og-text-editor.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Rich Text Editor Tool',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Rich Text Editor - Free Online Document Editor',
+    description: 'Create and edit documents with our free online rich text editor. Format text, add styles, and export your work. Perfect for writing, note-taking, and document creation.',
+    images: ['/og-text-editor.jpg'],
+  },
+}
 
 export default function TextEditorPage() {
   const [content, setContent] = useState('')

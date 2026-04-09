@@ -7,32 +7,42 @@ const getStorage = () => {
   return null;
 };
 
+const hashPassword = async (password) => {
+  if (!password) return '';
+  const msgUint8 = new TextEncoder().encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+};
+
 export const todoStorage = {
-  getPassword() {
+  getPasswordHash() {
     if (typeof window === 'undefined') return null;
-    return localStorage.getItem('todo_password');
+    return localStorage.getItem('todo_password_hash');
   },
 
-  setPassword(password) {
+  async setPassword(password) {
     if (typeof window === 'undefined') return;
-    localStorage.setItem('todo_password', password);
+    const hash = await hashPassword(password);
+    localStorage.setItem('todo_password_hash', hash);
   },
 
   async getTodos() {
     if (typeof window === 'undefined') return [];
 
-    const password = this.getPassword();
-    if (!password) return [];
+    const hash = this.getPasswordHash();
+    if (!hash) return [];
 
     const storage = getStorage();
     if (storage) {
       return new Promise((resolve) => {
-        storage.get([`todos_${password}`], (result) => {
-          resolve(result[`todos_${password}`] || []);
+        const key = `todos_v2_${hash}`;
+        storage.get([key], (result) => {
+          resolve(result[key] || []);
         });
       });
     } else {
-      const todos = localStorage.getItem(`todos_${password}`);
+      const todos = localStorage.getItem(`todos_v2_${hash}`);
       return todos ? JSON.parse(todos) : [];
     }
   },
@@ -40,18 +50,19 @@ export const todoStorage = {
   async saveTodos(todos) {
     if (typeof window === 'undefined') return;
 
-    const password = this.getPassword();
-    if (!password) return;
+    const hash = this.getPasswordHash();
+    if (!hash) return;
 
     const storage = getStorage();
     if (storage) {
       return new Promise((resolve) => {
-        storage.set({ [`todos_${password}`]: todos }, () => {
+        const key = `todos_v2_${hash}`;
+        storage.set({ [key]: todos }, () => {
           resolve();
         });
       });
     } else {
-      localStorage.setItem(`todos_${password}`, JSON.stringify(todos));
+      localStorage.setItem(`todos_v2_${hash}`, JSON.stringify(todos));
     }
   },
 

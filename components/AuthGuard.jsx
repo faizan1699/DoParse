@@ -10,23 +10,23 @@ export default function AuthGuard({ children }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const savedPassword = todoStorage.getPassword()
-    if (savedPassword) {
+    const savedHash = todoStorage.getPasswordHash()
+    if (savedHash) {
       setIsAuthorized(true)
     }
     setIsLoading(false)
   }, [])
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     if (password.trim()) {
-      todoStorage.setPassword(password.trim())
+      await todoStorage.setPassword(password.trim())
       setIsAuthorized(true)
     }
   }
 
-  const handleLogout = () => {
-    todoStorage.setPassword('')
+  const handleLogout = async () => {
+    await todoStorage.setPassword('')
     setIsAuthorized(false)
     window.location.reload()
   }

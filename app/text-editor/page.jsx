@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect , Fragment } from 'react'
 import { useRouter } from 'next/navigation'
 import Navbar from '../../components/Navbar'
 import TextEditor from '../../components/TextEditor'
@@ -108,12 +108,13 @@ export default function TextEditorPage() {
             </div>
 
             {/* Editor */}
-            <div className="p-6">
+            <div className="p-6 flex-1 flex flex-col" style={{ minHeight: '600px' }}>
               <TextEditor
                 value={content}
                 onChange={handleContentChange}
                 placeholder="Start writing your document here..."
-                className="min-h-[500px]"
+                className="flex-1"
+                showRecords={true}
               />
             </div>
 

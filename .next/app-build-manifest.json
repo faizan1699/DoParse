@@ -11,16 +11,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
+    "/url-parser/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/url-parser/page.js"
+    ],
     "/text-editor/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/text-editor/page.css",
       "static/chunks/app/text-editor/page.js"
-    ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
     ]
   }
 }

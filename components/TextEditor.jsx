@@ -65,7 +65,7 @@ export default function TextEditor({
         placeholder={placeholder}
         modules={modules}
         formats={formats}
-        className="bg-white rounded-lg shadow-lg"
+        className="bg-white rounded-lg shadow-lg text-black"
       />
     </div>
   )

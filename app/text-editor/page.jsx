@@ -65,7 +65,7 @@ export default function TextEditorPage() {
                   type="text"
                   value={title}
                   onChange={handleTitleChange}
-                  className="text-2xl font-bold text-black 0 bg-transparent border-none outline-none focus:outline-none flex-1"
+                  className="text-2xl font-bold !text-black bg-transparent border-none outline-none focus:outline-none flex-1"
                   placeholder="Enter document title..."
                 />
                 <div className="flex items-center space-x-4">
@@ -81,13 +81,13 @@ export default function TextEditorPage() {
                     className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2"
                   >
                     {isSaving ? (
-                      <>
+                      <Fragment>
                         <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4h4l2 2h6l2-2H6a2 2 0 00-2-2V6a2 2 0 002-2h4l2 2h6a2 2 0 002-2z" />
                         </svg>
                         <span>Saving...</span>
-                      </>
+                      </Fragment>
                     ) : (
                       <>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

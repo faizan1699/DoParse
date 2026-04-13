@@ -23,6 +23,8 @@
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 1.5;
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 .text-editor-container .ql-editor:focus {

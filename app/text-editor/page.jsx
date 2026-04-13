@@ -65,13 +65,13 @@ export default function TextEditorPage() {
                   type="text"
                   value={title}
                   onChange={handleTitleChange}
-                  className="text-2xl font-bold text-gray-900 bg-transparent border-none outline-none focus:outline-none flex-1"
+                  className="text-2xl font-bold text-black 0 bg-transparent border-none outline-none focus:outline-none flex-1"
                   placeholder="Enter document title..."
                 />
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={handleNewDocument}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                    className="px-4 py-2 bg-gray-100 text-black rounded-md hover:bg-gray-200 transition-colors"
                   >
                     New
                   </button>
